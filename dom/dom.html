@@ -1,0 +1,56 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>nodeName,nodeValue</title>
+<!-- 	渲染引擎的基本渲染流程
+	1 解析html构建dom树 构建dom节点
+	2 构建渲染树  解析样式信息
+	4 布局渲染树 布局dom节点
+	5 绘制渲染树 绘制dom节点 -->
+	<!-- 扩展阅读  讲解内部渲染过程 -->
+	<!-- 渲染流程 从上到下 从左到右   -->
+
+	<!-- 当进行大型代码动态加载的元素时，是否需要考虑js的执行顺序，防止js对还未加载的元素进行操作 -->
+	<script>
+	//对于图片太多的时候，会很慢，所以可以利用事件操作
+	window.onload = function(){
+		document.getElementById("header").style.color = "red";
+	}
+	// ＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊
+	//onload 所有资源加载完
+	// DOMContentLoaded 内容加载完事件
+	// 学习jquery的ready方法，里面做了兼容
+	//.......................................
+	</script>
+</head>
+<body>
+	<h1 id="header">这是一个dom标签</h1>
+	<div id="container">这是一个元素节点</div>
+	<!-- 是否可以编写一个方法来查看文档结构中不同的属性和数值，以便更加深入的了解dom的结构 -->
+	<!-- 文档总共包括12种类型节点 -->
+	<!-- 学习这些节点属性的作用：以后可以灵活的了解文档属性，利用js灵活的修改文档中的结构 -->
+	<script>
+	//文档节点的名字和值
+	var divNode = document.getElementById("container");
+	// ＊＊＊＊＊可以采用这种直接打印的方式，通过控制台查看对象内部所有的元素属性和方法＊＊＊＊＊
+	// console.log(divNode);  
+	console.log(divNode.nodeName + "/" + divNode.nodeValue);
+	//文档属性的名字和值
+	var attrNode = divNode.attributes[0];
+	console.log(attrNode.nodeName + "/" + attrNode.nodeValue);
+	//文本的名字和值
+	var textNode = divNode.childNodes[0];
+	console.log(textNode.nodeName + "/" + textNode.nodeValue);
+	//注释节点的名字和值
+	var commenNode = document.body.childNodes[1];
+	console.log(commenNode.nodeName + "/" + commenNode.nodeValue);
+	//文档类型节点的名字和值
+	console.log(document.doctype.nodeName + "/" + document.doctype.nodeValue);
+	//文档片段的名字和值
+	var frag = document.createDocumentFragment();
+	console.log(frag.nodeName + "/" + frag.nodeValue);
+	</script>
+</body>
+</html>
